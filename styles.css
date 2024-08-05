@@ -84,3 +84,50 @@ h1 {
         transform: translateY(100vh) rotate(360deg);
     }
 }
+/* Estilos existentes... */
+
+/* Novo estilo para a página de senha */
+.password-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+}
+
+.password-container h1 {
+    margin-bottom: 20px;
+}
+
+#password-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#password-form input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#password-form button {
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#password-form button:hover {
+    background-color: #0056b3;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+}
+
