@@ -25,10 +25,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Função para formatar a senha com barras
     const formatPassword = (input) => {
         const value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-        const formattedValue = value.replace(/(\d{2})(\d{2})?(\d{0,4})/, '$1/$2/$3'); // Adiciona barras
-        input.value = formattedValue;
-    };
 
-    // Adiciona evento de input para formatar a senha
-    passwordInput.addEventListener('input', () => formatPassword(passwordInput));
-});
+        let f
