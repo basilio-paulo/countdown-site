@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const correctPassword = '10042024'; // Senha sem barras
+    const correctPassword = '10062024'; // Senha sem barras
     const overlay = document.getElementById('password-overlay');
     const form = document.getElementById('password-form');
     const passwordInput = document.getElementById('password-input');
