@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Remove a sobreposição e mostra o conteúdo principal
             overlay.classList.add('hidden');
             mainContent.classList.remove('hidden');
+            document.body.style.overflow = 'auto'; // Permite rolagem do corpo após a remoção da sobreposição
         } else {
             // Exibe mensagem de erro
             errorMessage.textContent = 'Senha incorreta. Tente novamente.';
