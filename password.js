@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const correctPassword = '10/04/2024';
+    const correctPassword = '10042024'; // Senha sem barras
     const overlay = document.getElementById('password-overlay');
     const form = document.getElementById('password-form');
     const passwordInput = document.getElementById('password-input');
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', (event) => {
         event.preventDefault(); // Impede o envio do formulário
 
-        const enteredPassword = passwordInput.value.trim();
+        const enteredPassword = passwordInput.value.trim().replace(/\D/g, ''); // Remove todas as não-dígitos
 
         if (enteredPassword === correctPassword) {
             // Remove a sobreposição e mostra o conteúdo principal
@@ -21,4 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
             errorMessage.textContent = 'Senha incorreta. Tente novamente.';
         }
     });
+
+    // Função para formatar a senha com barras
+    const formatPassword = (input) => {
+        const value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+        const formattedValue = value.replace(/(\d{2})(\d{2})?(\d{0,4})/, '$1/$2/$3'); // Adiciona barras
+        input.value = formattedValue;
+    };
+
+    // Adiciona evento de input para formatar a senha
+    passwordInput.addEventListener('input', () => formatPassword(passwordInput));
 });

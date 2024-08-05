@@ -23,6 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('hours-value').innerText = hours;
         document.getElementById('minutes-value').innerText = minutes;
         document.getElementById('seconds-value').innerText = seconds;
+
+        // Atualiza a barra de progresso
+        const totalDuration = targetDate - new Date('2024-08-01T00:00:00').getTime(); // Suponha que o início da contagem é 01/08/2024
+        const elapsedDuration = totalDuration - distance;
+        const progress = (elapsedDuration / totalDuration) * 100;
+        document.getElementById('progress-bar').style.width = `${progress}%`;
     };
 
     const generateConfetti = () => {
