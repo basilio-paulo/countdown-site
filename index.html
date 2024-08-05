@@ -5,27 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contagem Regressiva</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-
-    <!-- Conteúdo principal -->
-    <div id="main-content" class="hidden">
-        <div class="container">
-            <h1>Contagem Regressiva para nos vermos</h1>
-            <div id="countdown" class="countdown">
-                <div id="days" class="time-unit"><span id="days-value">0</span> Dias</div>
-                <div id="hours" class="time-unit"><span id="hours-value">0</span> Horas</div>
-                <div id="minutes" class="time-unit"><span id="minutes-value">0</span> Minutos</div>
-                <div id="seconds" class="time-unit"><span id="seconds-value">0</span> Segundos</div>
-            </div>
-            <!-- Barra de progresso -->
-            <div id="progress-container">
-                <div id="progress-bar"></div>
-            </div>
+    <div id="countdown-container">
+        <div id="countdown">
+            <span id="days"></span> dias
+            <span id="hours"></span> horas
+            <span id="minutes"></span> minutos
+            <span id="seconds"></span> segundos
         </div>
+        <div id="message" class="hidden">Parabéns! O tempo acabou!</div>
     </div>
-    
-    <script src="password.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

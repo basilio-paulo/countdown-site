@@ -1,58 +1,39 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const targetDate = new Date('2024-08-09T00:00:00').getTime();
+document.addEventListener('DOMContentLoaded', function() {
+    const countdownDate = new Date('2024-08-09T00:00:00').getTime();
+    const countdownElement = document.getElementById('countdown');
+    const messageElement = document.getElementById('message');
 
-    const updateCountdown = () => {
+    function updateCountdown() {
         const now = new Date().getTime();
-        const distance = targetDate - now;
+        const timeLeft = countdownDate - now;
 
-        if (distance < 0) {
-            document.body.classList.add('celebration');
-            document.querySelector('.container').innerHTML = `
-                <h1>Parabéns! Chegou o grande dia!</h1>
-                <div class="confetti">${generateConfetti()}</div>
-            `;
+        if (timeLeft <= 0) {
+            countdownElement.style.display = 'none';
+            messageElement.classList.add('show');
+            messageElement.style.display = 'block';
+            showConfetti();
             return;
         }
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-        document.getElementById('days-value').innerText = days;
-        document.getElementById('hours-value').innerText = hours;
-        document.getElementById('minutes-value').innerText = minutes;
-        document.getElementById('seconds-value').innerText = seconds;
+        document.getElementById('days').innerText = days;
+        document.getElementById('hours').innerText = hours;
+        document.getElementById('minutes').innerText = minutes;
+        document.getElementById('seconds').innerText = seconds;
+    }
 
-        // Atualiza a barra de progresso
-        const totalDuration = targetDate - new Date('2024-08-01T00:00:00').getTime(); // Suponha que o início da contagem é 01/08/2024
-        const elapsedDuration = totalDuration - distance;
-        const progress = (elapsedDuration / totalDuration) * 100;
-        document.getElementById('progress-bar').style.width = `${progress}%`;
-    };
-
-    const generateConfetti = () => {
-        let confettiHTML = '';
-        for (let i = 0; i < 100; i++) {
-            const left = Math.random() * 100;
-            const top = Math.random() * 100;
-            const delay = Math.random() * 2;
-            const duration = Math.random() * 5 + 5;
-            const size = Math.random() * 10 + 5;
-            confettiHTML += `
-                <div class="piece" style="
-                    left: ${left}vw;
-                    top: ${top}vh;
-                    background-color: hsl(${Math.random() * 360}, 100%, 50%);
-                    width: ${size}px;
-                    height: ${size}px;
-                    animation-delay: ${delay}s;
-                    animation-duration: ${duration}s;
-                "></div>
-            `;
-        }
-        return confettiHTML;
-    };
+    function showConfetti() {
+        // Adiciona confetes à tela
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
+    }
 
     setInterval(updateCountdown, 1000);
 });
