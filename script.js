@@ -6,7 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const distance = targetDate - now;
 
         if (distance < 0) {
-            document.getElementById('countdown').innerHTML = "<h2>Chegou o grande dia!</h2>";
+            document.body.classList.add('celebration');
+            document.querySelector('.container').innerHTML = `
+                <h1>Parabéns! Chegou o grande dia!</h1>
+                <div class="confetti">${generateConfetti()}</div>
+            `;
             return;
         }
 
@@ -19,6 +23,29 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('hours-value').innerText = hours;
         document.getElementById('minutes-value').innerText = minutes;
         document.getElementById('seconds-value').innerText = seconds;
+    };
+
+    const generateConfetti = () => {
+        let confettiHTML = '';
+        for (let i = 0; i < 100; i++) {
+            const left = Math.random() * 100;
+            const top = Math.random() * 100;
+            const delay = Math.random() * 2;
+            const duration = Math.random() * 5 + 5;
+            const size = Math.random() * 10 + 5;
+            confettiHTML += `
+                <div class="piece" style="
+                    left: ${left}vw;
+                    top: ${top}vh;
+                    background-color: hsl(${Math.random() * 360}, 100%, 50%);
+                    width: ${size}px;
+                    height: ${size}px;
+                    animation-delay: ${delay}s;
+                    animation-duration: ${duration}s;
+                "></div>
+            `;
+        }
+        return confettiHTML;
     };
 
     setInterval(updateCountdown, 1000);
